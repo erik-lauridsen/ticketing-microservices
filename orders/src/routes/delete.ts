@@ -22,7 +22,7 @@ router.delete('/api/orders/:orderId',
         id: order.ticket.id
       }
     })
-    res.send(204);
+    res.sendStatus(204);
 });
 
 export {router as deleteOrderRouter}
