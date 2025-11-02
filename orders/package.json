@@ -1,5 +1,5 @@
 {
-  "name": "auth",
+  "name": "orders",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,6 +10,7 @@
   "jest": {
     "preset": "ts-jest",
     "testEnvironment": "node",
+    "testTimeout": 50000,
     "setupFilesAfterEnv": [
       "./src/test/setup.ts"
     ]
@@ -28,6 +29,8 @@
     "express-validator": "7.2.0",
     "jsonwebtoken": "9.0.2",
     "mongoose": "8.6.3",
+    "mongoose-update-if-current": "^1.4.0",
+    "node-nats-streaming": "^0.3.2",
     "ts-node-dev": "2.0.0",
     "typescript": "5.5.4"
   },

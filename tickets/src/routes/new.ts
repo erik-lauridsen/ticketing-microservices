@@ -18,6 +18,7 @@ async (req: Request, res: Response) => {
   const {title, price} = req.body;
   const userId = req.currentUser!.id; //validated in requireAuth
 
+  const version = 1;
   const ticket = Ticket.build({ title, price, userId });
   await ticket.save();
 
@@ -25,7 +26,8 @@ async (req: Request, res: Response) => {
     id: ticket.id,
     title: ticket.title,
     price: ticket.price,
-    userId: ticket.userId
+    userId: ticket.userId,
+    version: ticket.version
   });
 
   res.status(201).send(ticket);

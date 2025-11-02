@@ -3,6 +3,7 @@ import { app } from '../../app';
 import mongoose from 'mongoose';
 
 import { natsWrapper } from '../../nats-wrapper';
+import { Ticket } from '../../models/ticket';
 
 const createTicket = async (cookie?: string[]) => {
   const myCookie = cookie ? cookie : global.getCookie();
@@ -99,4 +100,29 @@ it('publishes an event on ticket update', async () => {
     .expect(200);
 
   expect(natsWrapper.client.publish).toHaveBeenCalled();
+})
+
+it('does not update a reserved ticket ', async () => {
+
+  const cookie = global.getCookie();
+
+  const response = await createTicket(cookie);
+
+  const ticket = await Ticket.findById(response.body.id);
+
+  ticket!.orderId = new mongoose.Types.ObjectId().toHexString();
+
+  console.log(ticket);
+
+  await ticket!.save();
+
+  const newTitle = "hehehe";
+  const newPrice = 200;
+
+  await request(app)
+    .put(`/api/tickets/${ticket!.id}`)
+    .set('Cookie', cookie) //same cookie
+    .send({price: newPrice, title: newTitle })
+    .expect(400);
+  
 })
