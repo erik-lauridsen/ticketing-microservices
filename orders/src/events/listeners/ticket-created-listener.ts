@@ -8,15 +8,11 @@ export class TicketCreatedListener extends Listener<TicketCreatedEvent> {
   queueGroupName: string = queueGroupName;
 
   async onMessage(data: TicketCreatedEvent['data'], msg: Message) {
-    //if ticket doesn't already exist, create it
     const { title, price, id} = data;
     const ticket = Ticket.build({
       title, price, id
     });
     await ticket.save();
-    //ack
     msg.ack()
-    //if we fail to create it, nack or whatever that is
-
   }
 }

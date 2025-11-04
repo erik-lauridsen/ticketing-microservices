@@ -5,6 +5,7 @@ import { TicketCreatedListener } from './events/listeners/ticket-created-listene
 import { TicketUpdatedListener } from './events/listeners/ticket-updated-listener';
 import { app } from './app';
 import { ExpirationCompleteListener } from './events/listeners/expiration-complete-listener';
+import { PaymentCreatedListener } from './events/listeners/payment-created-listener';
 
 const start = async () => {
   if (!process.env.JWT_KEY) throw new Error('JWT_KEY must be defined');
@@ -27,6 +28,7 @@ const start = async () => {
     new TicketCreatedListener(natsWrapper.client).listen();
     new TicketUpdatedListener(natsWrapper.client).listen();
     new ExpirationCompleteListener(natsWrapper.client).listen();
+    new PaymentCreatedListener(natsWrapper.client).listen();
 
     console.log('Listening for ticket events')
 

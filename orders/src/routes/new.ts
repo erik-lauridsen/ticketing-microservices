@@ -8,7 +8,7 @@ import { OrderCreatedPublisher } from "../events/publishers/order-created-publis
 import { natsWrapper } from "../nats-wrapper";
 
 const router = Router();
-const ORDER_LIFESPAN_SECONDS = 15 * 60;
+const ORDER_LIFESPAN_SECONDS = 1 * 60;
 
 router.post('/api/orders',
   requireAuth, 
