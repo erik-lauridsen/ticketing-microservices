@@ -1,0 +1,19 @@
+{
+  "name": "jetstream-test",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@nats-io/jetstream": "^3.2.0",
+    "@types/node": "^24.9.1",
+    "nats": "^2.29.3",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.6.2"
+  }
+}
