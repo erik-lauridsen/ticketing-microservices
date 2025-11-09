@@ -19,7 +19,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@elauridsen_tickets/common": "^3.0.11",
+    "@elauridsen_tickets/common": "^3.0.16",
     "@types/bull": "^3.15.9",
     "bull": "^4.16.5",
     "node-nats-streaming": "0.3.2",
