@@ -1,7 +1,7 @@
-import { MongoMemoryServer } from "mongodb-memory-server";
-import mongoose from "mongoose";
+import { MongoMemoryServer } from 'mongodb-memory-server';
+import mongoose from 'mongoose';
 import request from 'supertest';
-import { app } from "../app";
+import { app } from '../app';
 
 declare global {
   var getCookie: () => Promise<string[]>;
@@ -10,9 +10,9 @@ declare global {
 let mongo: any;
 
 beforeAll(async () => {
-  process.env.JWT_KEY = "asdfasdf";
+  process.env.JWT_KEY = 'asdfasdf';
 
-  const mongo = await MongoMemoryServer.create();
+  mongo = await MongoMemoryServer.create();
   const mongoUri = mongo.getUri();
 
   await mongoose.connect(mongoUri, {});
@@ -40,9 +40,9 @@ global.getCookie = async () => {
   const password = 'password';
   const response = await request(app)
     .post('/api/users/signup')
-    .send({email, password})
+    .send({ email, password })
     .expect(201);
   const cookie = response.get('Set-Cookie');
-  if(!cookie) throw new Error("Expected getCookie to give a cookie?");
+  if (!cookie) throw new Error('Expected getCookie to give a cookie?');
   return cookie;
-}
+};
